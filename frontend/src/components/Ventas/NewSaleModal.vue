@@ -506,7 +506,7 @@ async function registrarVenta() {
     model.value = false
     emit('saleCreated')
   } catch (err) {
-    $q.notify({ type: 'negative', message: err?.response?.data?.msg || 'Error al registrar', position: 'top' })
+    $q.notify({ type: 'negative', message: err?.message || 'Error al registrar la venta', position: 'top' })
   } finally {
     loading.value = false
   }

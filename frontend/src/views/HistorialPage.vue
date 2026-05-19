@@ -422,12 +422,11 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive, onMounted } from 'vue'
+import { ref, computed, reactive, onMounted, toRef } from 'vue'
 import MainLayout from '@/layouts/MainLayout.vue'
 import EmptyState from '@/components/Shared/EmptyState.vue'
 import { useVentasStore } from '@/store/ventasStore'
 import { useCajaStore } from '@/store/cajaStore'
-import { obtenerHistorialCompleto } from '@/services/historialService'
 import {
   formatCurrency, formatDateShort, formatDateLong,
   formatDateFriendly, formatTime
@@ -436,7 +435,7 @@ import { METODOS_PAGO_LABELS, METODOS_PAGO_CHIPS, METODOS_PAGO_OPTIONS } from '@
 
 const ventasStore = useVentasStore()
 const cajaStore   = useCajaStore()
-const movimientosHistorial = ref([])
+const movimientosHistorial = computed(() => cajaStore.historialMovimientos || [])
 
 const tab = ref('ventas')
 const pagination = ref({ rowsPerPage: 15, sortBy: 'fecha', descending: true })
@@ -551,15 +550,9 @@ const tabs = [
 function chipColor(m) { return METODOS_PAGO_CHIPS[m] || 'grey' }
 function metodoLabel(m) { return METODOS_PAGO_LABELS[m] || m }
 
-onMounted(async () => {
+onMounted(() => {
   ventasStore.cargarVentas()
   cajaStore.cargarEstadoCaja()
-  try {
-    const res = await obtenerHistorialCompleto()
-    movimientosHistorial.value = res?.data?.movimientos || []
-  } catch {
-    movimientosHistorial.value = []
-  }
 })
 </script>
 
