@@ -17,7 +17,7 @@
 
         <q-toolbar-title class="text-dark text-weight-medium">
           {{ configuracionStore.negocioNombre }}
-          <span class="text-grey-6 text-caption q-ml-xs">— ProCuentas</span>
+          <span class="text-grey-6 text-caption q-ml-xs">— SystemPos</span>
         </q-toolbar-title>
 
         <div class="row items-center q-gutter-x-sm">
@@ -25,15 +25,6 @@
             <span class="text-caption text-grey-7 lh-1">{{ fechaActual }}</span>
             <span class="text-caption text-weight-medium text-grey-9 lh-1">{{ horaActual }}</span>
           </div>
-
-          <q-chip
-            :icon="cajaStore.cajaAbierta ? 'lock_open' : 'lock'"
-            :color="cajaStore.cajaAbierta ? 'positive' : 'negative'"
-            text-color="white"
-            :label="cajaStore.cajaAbierta ? 'Abierta' : 'Cerrada'"
-            dense
-            class="q-ml-xs"
-          />
         </div>
       </q-toolbar>
     </q-header>
@@ -60,47 +51,52 @@
 
       <!-- Navigation -->
       <q-list class="q-mt-sm q-px-sm">
-        <q-item
-          v-for="item in menuItems"
-          :key="item.path"
-          :to="item.path"
-          clickable
-          v-ripple
-          exact
-          class="sidebar-nav-item"
-        >
-          <q-item-section avatar>
-            <q-icon :name="item.icon" size="20px" />
-          </q-item-section>
-          <q-item-section class="text-body2">{{ item.label }}</q-item-section>
-        </q-item>
+        <template v-if="cajaStore.cajaAbierta">
+          <q-item
+            v-for="item in menuItems"
+            :key="item.path"
+            :to="item.path"
+            clickable
+            v-ripple
+            exact
+            class="sidebar-nav-item"
+          >
+            <q-item-section avatar>
+              <q-icon :name="item.icon" size="20px" />
+            </q-item-section>
+            <q-item-section class="text-body2">{{ item.label }}</q-item-section>
+          </q-item>
+        </template>
+
+        <!-- Solo Caja cuando está cerrada -->
+        <template v-else>
+          <q-item
+            to="/caja"
+            clickable v-ripple exact
+            class="sidebar-nav-item"
+          >
+            <q-item-section avatar>
+              <q-icon name="account_balance" size="20px" />
+            </q-item-section>
+            <q-item-section class="text-body2">Caja</q-item-section>
+          </q-item>
+
+          <div class="sidebar-locked-msg q-mt-md q-mx-sm">
+            <q-icon name="lock" size="16px" style="color: rgba(255,255,255,0.35)" />
+            <span>Abre la caja para acceder al resto del sistema</span>
+          </div>
+        </template>
       </q-list>
 
       <div class="col-grow" />
 
-      <!-- Cash status indicator -->
+      <!-- Botón Quiero Saber + versión -->
       <div class="q-px-md q-pb-sm q-mt-auto">
         <div class="sidebar-divider q-mb-sm" />
-        <div class="caja-status-mini row items-center q-gutter-x-sm q-pa-sm">
-          <q-icon
-            :name="cajaStore.cajaAbierta ? 'lock_open' : 'lock'"
-            :color="cajaStore.cajaAbierta ? 'positive' : 'negative'"
-            size="16px"
-          />
-          <div>
-            <div class="text-caption" style="color: rgba(255,255,255,0.5); font-size: var(--pc-text-4xs);">Estado de caja</div>
-            <div
-              class="text-caption text-weight-medium"
-              :style="cajaStore.cajaAbierta ? 'color: #34D399' : 'color: #F87171'"
-            >
-              {{ cajaStore.cajaAbierta ? 'Caja abierta' : 'Caja cerrada' }}
-            </div>
-          </div>
-        </div>
-        <!-- Botón Quiero Saber -->
+
         <q-btn
           flat no-caps
-          class="help-btn full-width q-mt-xs"
+          class="help-btn full-width"
           icon="help_outline"
           label="¿Cómo funciona?"
           @click="helpRef?.abrir()"
@@ -258,10 +254,19 @@ function toggleLeftDrawer() {
   box-shadow: 0 2px 10px rgba(79, 70, 229, 0.4) !important;
 }
 
-/* Cash status mini */
-.caja-status-mini {
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: var(--pc-radius-sm);
+
+/* Mensaje caja bloqueada */
+.sidebar-locked-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(239,68,68,0.1);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 8px;
+  font-size: var(--pc-text-xs);
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
 }
 
 /* Botón de ayuda */
