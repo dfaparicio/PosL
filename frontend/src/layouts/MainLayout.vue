@@ -97,11 +97,23 @@
             </div>
           </div>
         </div>
+        <!-- Botón Quiero Saber -->
+        <q-btn
+          flat no-caps
+          class="help-btn full-width q-mt-xs"
+          icon="help_outline"
+          label="¿Cómo funciona?"
+          @click="helpRef?.abrir()"
+        />
+
         <div class="text-center q-mt-xs" style="color: rgba(255,255,255,0.25); font-size: var(--pc-text-3xs);">
           v{{ appVersion }}
         </div>
       </div>
     </q-drawer>
+
+    <!-- ── Help Modal ─────────────────────────────────────────── -->
+    <HelpModal ref="helpRef" />
 
     <!-- ── Content ───────────────────────────────────────────── -->
     <q-page-container>
@@ -142,10 +154,12 @@ import { useCajaStore } from '@/store/cajaStore'
 import { useConfiguracionStore } from '@/store/configuracionStore'
 import { formatDate } from '@/common/format'
 import { APP_VERSION } from '@/constants'
+import HelpModal from '@/components/Shared/HelpModal.vue'
 
 const $q = useQuasar()
 const route = useRoute()
 const leftDrawerOpen = ref(false)
+const helpRef = ref(null)
 const cajaStore = useCajaStore()
 const configuracionStore = useConfiguracionStore()
 const appVersion = APP_VERSION
@@ -248,6 +262,18 @@ function toggleLeftDrawer() {
 .caja-status-mini {
   background: rgba(255, 255, 255, 0.06);
   border-radius: var(--pc-radius-sm);
+}
+
+/* Botón de ayuda */
+.help-btn {
+  color: rgba(255,255,255,0.45) !important;
+  font-size: var(--pc-text-xs) !important;
+  border-radius: 8px !important;
+  transition: all 0.15s !important;
+}
+.help-btn:hover {
+  background: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.85) !important;
 }
 
 /* Page background */
