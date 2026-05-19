@@ -1,0 +1,567 @@
+/* ═══════════════════════════════════════════════════════════
+   ProCuentas — Estilos Globales
+
+   Las variables (tamaños, colores, pesos) están en tokens.css
+   Modifica los valores ahí para cambios globales.
+   ═══════════════════════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--pc-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--pc-surface-variant);
+  font-size: var(--pc-text-base);
+  line-height: var(--pc-lh-relaxed);
+}
+
+#q-app {
+  min-height: 100vh;
+}
+
+/* ─── Título principal de página (26px / 800) ────────────── */
+.pc-title {
+  font-size: var(--pc-text-2xl) !important;
+  font-weight: var(--pc-weight-extra) !important;
+  color: var(--pc-text-primary) !important;
+  line-height: var(--pc-lh-snug);
+}
+
+/* ─── Subtítulo de sección (22px / 700) ───────────────────── */
+.pc-subtitle {
+  font-size: var(--pc-text-xl) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  color: var(--pc-text-secondary) !important;
+  line-height: var(--pc-lh-normal);
+}
+
+/* ─── Encabezado de tarjeta (18px / 700) ──────────────────── */
+.pc-card-title {
+  font-size: var(--pc-text-lg) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  color: var(--pc-text-secondary) !important;
+  letter-spacing: var(--pc-tracking-tight);
+}
+
+/* ─── Cuerpo principal / texto normal (16px / 400) ────────── */
+.pc-body {
+  font-size: var(--pc-text-base) !important;
+  color: var(--pc-text-body) !important;
+}
+
+/* ─── Caption / texto secundario (14px / 400) ─────────────── */
+.pc-caption {
+  font-size: var(--pc-text-sm) !important;
+  color: var(--pc-text-muted) !important;
+}
+
+/* ─── Label uppercase / micro etiqueta (13px / 700) ───────── */
+.pc-label {
+  font-size: var(--pc-text-xs) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  text-transform: uppercase !important;
+  letter-spacing: var(--pc-tracking-wider) !important;
+  color: var(--pc-text-hint) !important;
+}
+
+/* ─── Números grandes en tarjetas: stat grande (34px / 800) ── */
+.pc-stat-value-lg {
+  font-size: var(--pc-text-stat-lg) !important;
+  font-weight: var(--pc-weight-extra) !important;
+  line-height: var(--pc-lh-none);
+}
+
+/* ─── Números grandes en tarjetas: stat mediano (26px / 700) ─ */
+.pc-stat-value-md {
+  font-size: var(--pc-text-2xl) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  line-height: var(--pc-lh-none);
+}
+
+/* ─── Números grandes en tarjetas: stat pequeño (20px / 700) ─ */
+.pc-stat-value-sm {
+  font-size: 20px !important;
+  font-weight: var(--pc-weight-bold) !important;
+  line-height: var(--pc-lh-none);
+}
+
+/* ─── Badges & chips ─────────────────────────────────────── */
+.q-badge {
+  font-size: var(--pc-text-xs) !important;
+  padding: 4px 10px !important;
+  border-radius: 6px !important;
+  font-weight: var(--pc-weight-semi) !important;
+}
+
+.q-chip {
+  font-size: var(--pc-text-sm) !important;
+  height: auto !important;
+  min-height: 28px !important;
+  padding: 4px 14px !important;
+  font-weight: var(--pc-weight-semi) !important;
+}
+
+/* ─── Card universal premium ──────────────────────────────── */
+.pc-card {
+  border-radius: var(--pc-radius-md) !important;
+  box-shadow: var(--pc-shadow-sm) !important;
+  border: 1px solid var(--pc-border) !important;
+  background: var(--pc-surface) !important;
+  transition: box-shadow 0.22s ease, transform 0.22s ease;
+  overflow: hidden;
+}
+
+.pc-card:hover {
+  box-shadow: var(--pc-shadow-md) !important;
+}
+
+.pc-card.pc-card--lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--pc-shadow-md) !important;
+}
+
+/* Card header estándar */
+.pc-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--pc-border);
+  background: var(--pc-surface);
+}
+
+/* Card body estándar */
+.pc-card-body {
+  padding: 20px;
+}
+
+/* ─── Filas de cards con altura igual ────────────────────── */
+/* Úsalo en <div class="row equal-height q-col-gutter-md"> */
+.equal-height {
+  align-items: stretch !important;
+}
+
+.equal-height > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.equal-height > [class*="col-"] > .pc-card,
+.equal-height > [class*="col-"] > div {
+  flex: 1;
+}
+
+/* Forzar altura 100% en cualquier tarjeta hija de un col de equal-height */
+.full-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Tablas: encabezados (13px / 700 uppercase) ──────────── */
+.q-table th {
+  font-size: var(--pc-text-xs) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  text-transform: uppercase !important;
+  letter-spacing: var(--pc-tracking-wide) !important;
+  color: var(--pc-text-muted) !important;
+  padding: 14px 18px !important;
+  background: var(--pc-surface-variant) !important;
+  white-space: nowrap;
+}
+
+/* ─── Tablas: celdas (15px / 400) ─────────────────────────── */
+.q-table td {
+  font-size: var(--pc-text-md) !important;
+  padding: 14px 18px !important;
+  color: var(--pc-text-body) !important;
+  border-bottom: 1px solid rgba(79,70,229,0.05) !important;
+}
+
+.q-table tbody tr:hover td {
+  background: rgba(79,70,229,0.03) !important;
+}
+
+.q-table tbody tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* ─── Sidebar navigation ──────────────────────────────────── */
+.q-drawer .q-item {
+  border-radius: 10px;
+  margin: 2px 10px;
+  transition: all 0.18s ease;
+  min-height: 44px !important;
+}
+
+.q-drawer .q-item:hover {
+  background: rgba(255, 255, 255, 0.10) !important;
+}
+
+.q-drawer .q-item.q-router-link--active {
+  background: var(--q-primary) !important;
+  color: white !important;
+}
+
+.q-drawer .q-item.q-router-link--active .q-icon {
+  color: white !important;
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(79,70,229,0.25); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(79,70,229,0.45); }
+
+/* ─── Page transitions ────────────────────────────────────── */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.page-enter-from { opacity: 0; transform: translateY(8px); }
+.page-leave-to   { opacity: 0; transform: translateY(-4px); }
+
+/* ─── Skeleton shimmer ────────────────────────────────────── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-box {
+  background: linear-gradient(90deg, #ede9fe 25%, #f5f3ff 50%, #ede9fe 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--pc-radius-sm);
+}
+
+/* ─── Page layout estándar ───────────────────────────────── */
+.page-wrapper {
+  padding: 20px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .page-wrapper { padding: 16px; }
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+/* ─── Título dentro de page-header (26px / 800) ──────────── */
+.page-header .page-title {
+  font-size: var(--pc-text-2xl);
+  font-weight: var(--pc-weight-extra);
+  color: var(--pc-text-primary);
+  line-height: var(--pc-lh-tight);
+}
+
+/* ─── Subtítulo dentro de page-header (15px / 400 hint) ──── */
+.page-header .page-subtitle {
+  font-size: var(--pc-text-md);
+  color: var(--pc-text-hint);
+  margin-top: 2px;
+}
+
+/* ─── Misc utilities ──────────────────────────────────────── */
+.cursor-pointer { cursor: pointer; }
+.text-decoration-none { text-decoration: none; }
+
+/* Quasar card hover override */
+.q-card--bordered:not(.no-hover):hover {
+  box-shadow: var(--pc-shadow-md) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Sistema de Modales (usar en TODOS los diálogos)
+   ═══════════════════════════════════════════════════════════ */
+.pc-modal {
+  width: 100%;
+  max-width: 520px;
+  border-radius: var(--pc-radius-lg) !important;
+  overflow: hidden;
+}
+
+.pc-modal-header {
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  background: var(--pc-surface);
+  border-bottom: 1px solid var(--pc-border);
+}
+
+.pc-modal-header-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.pc-modal-title {
+  font-size: var(--pc-text-lg) !important;
+  font-weight: var(--pc-weight-extra) !important;
+  color: var(--pc-text-primary) !important;
+  line-height: var(--pc-lh-tight);
+}
+
+.pc-modal-sub {
+  font-size: var(--pc-text-sm) !important;
+  color: var(--pc-text-hint) !important;
+  margin-top: 2px;
+}
+
+.pc-modal-body {
+  padding: 20px;
+}
+
+.pc-modal-actions {
+  padding: 14px 20px;
+  border-top: 1px solid var(--pc-border);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Componentes compartidos (usar en lugar de scoped duplicados)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Ícono de encabezado en cards ───────────────────────── */
+.pc-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ─── Celda de fecha (tablas) ────────────────────────────── */
+.pc-date-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pc-date-day {
+  width: 42px;
+  height: 42px;
+  background: rgba(79, 70, 229, 0.1);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: var(--pc-weight-extra);
+  color: var(--q-primary);
+  flex-shrink: 0;
+}
+
+.pc-date-main {
+  font-size: var(--pc-text-md);
+  font-weight: var(--pc-weight-semi);
+  color: var(--pc-text-body);
+}
+
+.pc-date-sub {
+  font-size: var(--pc-text-sm);
+  color: var(--pc-text-hint);
+  margin-top: 1px;
+}
+
+/* ─── Badge de tipo (ingreso / retiro) ───────────────────── */
+.pc-tipo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: var(--pc-text-sm);
+  font-weight: var(--pc-weight-bold);
+}
+
+.pc-tipo-badge--ingreso {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--q-positive);
+}
+
+.pc-tipo-badge--retiro {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--q-negative);
+}
+
+/* ─── Valor monetario (positivo / negativo) ──────────────── */
+.pc-valor-pos {
+  font-size: 18px;
+  font-weight: var(--pc-weight-extra);
+  color: var(--q-positive);
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-valor-neg {
+  font-size: 18px;
+  font-weight: var(--pc-weight-extra);
+  color: var(--q-negative);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Label de sección de formulario ─────────────────────── */
+.pc-section-label {
+  font-size: var(--pc-text-xs);
+  font-weight: var(--pc-weight-extra);
+  text-transform: uppercase;
+  letter-spacing: var(--pc-tracking-wide);
+  color: var(--pc-text-hint);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.pc-section-label .pc-optional-tag {
+  font-weight: var(--pc-weight-regular);
+  text-transform: none;
+  letter-spacing: var(--pc-tracking-normal);
+  font-size: var(--pc-text-3xs);
+  color: var(--pc-text-disabled);
+  margin-left: 4px;
+}
+
+/* ─── Badge de ranking ────────────────────────────────────── */
+.pc-rank-badge {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(79, 70, 229, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--pc-text-3xs);
+  font-weight: var(--pc-weight-extra);
+  color: var(--q-primary);
+  flex-shrink: 0;
+}
+
+/* ─── Fila de resumen con borde ──────────────────────────── */
+.pc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(79, 70, 229, 0.06);
+}
+
+.pc-summary-row:last-child {
+  border-bottom: none;
+}
+
+/* ─── Fila total destacada ────────────────────────────────── */
+.pc-total-highlight {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(79, 70, 229, 0.05);
+  border-radius: 10px;
+  border: 1.5px solid rgba(79, 70, 229, 0.15);
+  padding: 12px 16px;
+  margin-top: 8px;
+}
+
+/* ─── Print ───────────────────────────────────────────────── */
+@media print {
+  .q-header, .q-drawer, .q-footer { display: none !important; }
+  .q-page-container { padding-top: 0 !important; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Sobreescritura de clases tipográficas de Quasar
+   Esto hace que los text-h*, text-subtitle*, text-body*, etc.
+   respondan a nuestros tokens globales.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Quasar headings ── */
+.text-h3 {
+  font-size: var(--pc-text-xl) !important;
+  font-weight: var(--pc-weight-extra) !important;
+  line-height: var(--pc-lh-tight) !important;
+  letter-spacing: var(--pc-tracking-normal) !important;
+}
+
+.text-h4 {
+  font-size: var(--pc-text-lg) !important;
+  font-weight: var(--pc-weight-bold) !important;
+}
+
+.text-h5 {
+  font-size: var(--pc-text-base) !important;
+  font-weight: var(--pc-weight-bold) !important;
+}
+
+.text-h6 {
+  font-size: var(--pc-text-md) !important;
+  font-weight: var(--pc-weight-bold) !important;
+}
+
+/* ─── Quasar subtitles ── */
+.text-subtitle1 {
+  font-size: var(--pc-text-md) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  line-height: var(--pc-lh-relaxed) !important;
+  letter-spacing: var(--pc-tracking-normal) !important;
+}
+
+.text-subtitle2 {
+  font-size: var(--pc-text-sm) !important;
+  font-weight: var(--pc-weight-bold) !important;
+  line-height: var(--pc-lh-normal) !important;
+  letter-spacing: var(--pc-tracking-normal) !important;
+}
+
+/* ─── Quasar body text ── */
+.text-body1 {
+  font-size: var(--pc-text-base) !important;
+  font-weight: var(--pc-weight-regular) !important;
+  line-height: var(--pc-lh-relaxed) !important;
+}
+
+.text-body2 {
+  font-size: var(--pc-text-sm) !important;
+  font-weight: var(--pc-weight-regular) !important;
+  line-height: var(--pc-lh-relaxed) !important;
+}
+
+/* ─── Quasar caption / overline ── */
+.text-caption {
+  font-size: var(--pc-text-xs) !important;
+  font-weight: var(--pc-weight-regular) !important;
+  line-height: var(--pc-lh-normal) !important;
+  letter-spacing: var(--pc-tracking-normal) !important;
+}
+
+.text-overline {
+  font-size: var(--pc-text-3xs) !important;
+  font-weight: var(--pc-weight-medium) !important;
+  letter-spacing: var(--pc-tracking-wider) !important;
+}
+
+/* ─── Quasar weight helpers ── */
+.text-weight-thin    { font-weight: 100 !important; }
+.text-weight-light   { font-weight: var(--pc-weight-light) !important; }
+.text-weight-regular { font-weight: var(--pc-weight-regular) !important; }
+.text-weight-medium  { font-weight: var(--pc-weight-medium) !important; }
+.text-weight-bold    { font-weight: var(--pc-weight-bold) !important; }
+.text-weight-bolder  { font-weight: var(--pc-weight-black) !important; }
+
+/* ─── Body base font-size (Quasar lo pone en 14px, lo subimos) ── */
+body {
+  font-size: var(--pc-text-base) !important;
+}

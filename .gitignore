@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.env
+*.log
+test-carga-masiva.mjs
+frontend/e2e/

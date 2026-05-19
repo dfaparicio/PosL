@@ -1,0 +1,86 @@
+/* ═══════════════════════════════════════════════════════════
+   ProCuentas — Design Tokens (Variables Globales)
+
+   MODIFICA AQUÍ los valores para cambiar TODO el proyecto.
+   Todos los tamaños, colores, pesos y espaciados se definen
+   en este único archivo y se aplican globalmente.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ─── TIPOGRAFÍA: Familia de fuentes ──────────────────── */
+  /* Fuente principal para todo el proyecto */
+  --pc-font-sans: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Fuente monoespaciada para números/código */
+  --pc-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ─── TIPOGRAFÍA: Tamaños de letra ────────────────────── */
+  /* Hero / título máximo */
+  --pc-text-3xl: 36px;
+  /* Título de página */
+  --pc-text-2xl: 32px;
+  /* Subtítulo de sección */
+  --pc-text-xl: 28px;
+  /* Encabezado de tarjeta / diálogos */
+  --pc-text-lg: 24px;
+  /* Cuerpo principal / texto base */
+  --pc-text-base: 19px;
+  /* Texto intermedio (nombres, fechas, montos) */
+  --pc-text-md: 18px;
+  /* Caption / texto secundario */
+  --pc-text-sm: 17px;
+  /* Micro label / etiquetas uppercase */
+  --pc-text-xs: 16px;
+  /* Referencias / chips / texto pequeño */
+  --pc-text-2xs: 15px;
+  /* Sub-textos / timestamps / hints */
+  --pc-text-3xs: 14px;
+  /* Labels de columna / texto mínimo */
+  --pc-text-4xs: 13px;
+  /* Badge extremo / grupo labels */
+  --pc-text-5xs: 12px;
+
+  /* Números grandes en tarjetas (stat values) */
+  --pc-text-stat-xl: 44px;
+  --pc-text-stat-lg: 42px;
+
+  /* ─── TIPOGRAFÍA: Pesos de fuente ─────────────────────── */
+  --pc-weight-light: 300;
+  --pc-weight-regular: 400;
+  --pc-weight-medium: 500;
+  --pc-weight-semi: 600;
+  --pc-weight-bold: 700;
+  --pc-weight-extra: 800;
+  --pc-weight-black: 900;
+
+  /* ─── COLORES DE TEXTO ────────────────────────────────── */
+  /* Texto principal / títulos oscuros */
+  --pc-text-primary: #111827;
+  /* Subtítulos / encabezados */
+  --pc-text-secondary: #1F2937;
+  /* Cuerpo / texto normal */
+  --pc-text-body: #374151;
+  /* Texto secundario / captions */
+  --pc-text-muted: #6B7280;
+  /* Hints / placeholders / labels */
+  --pc-text-hint: #9CA3AF;
+  /* Texto deshabilitado / estados vacíos */
+  --pc-text-disabled: #D1D5DB;
+  /* Texto muy tenue / bordes suaves */
+  --pc-text-faint: #E5E7EB;
+
+  /* ─── INTERLINEADO (line-height) ──────────────────────── */
+  --pc-lh-none: 1;
+  --pc-lh-tight: 1.2;
+  --pc-lh-snug: 1.3;
+  --pc-lh-normal: 1.35;
+  --pc-lh-relaxed: 1.5;
+
+  /* ─── ESPACIADO ENTRE LETRAS (letter-spacing) ─────────── */
+  --pc-tracking-tighter: -0.02em;
+  --pc-tracking-tight: -0.01em;
+  --pc-tracking-normal: 0;
+  --pc-tracking-wide: 0.04em;
+  --pc-tracking-wider: 0.05em;
+  --pc-tracking-widest: 0.08em;
+}
