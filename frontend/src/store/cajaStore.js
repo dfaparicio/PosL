@@ -25,7 +25,7 @@ export const useCajaStore = defineStore('caja', () => {
   function cargarEstadoCaja() {}
 
   /* ─── Abrir caja ─── */
-  function abrirCaja(data) {
+  async function abrirCaja(data) {
     if (cajaAbierta.value)
       throw new Error('Ya existe una caja abierta. Ciérrela antes de abrir una nueva.')
 
@@ -49,7 +49,7 @@ export const useCajaStore = defineStore('caja', () => {
   }
 
   /* ─── Cerrar caja ─── */
-  function cerrarCaja(data) {
+  async function cerrarCaja(data) {
     if (!cajaAbierta.value || !cajaActual.value)
       throw new Error('No hay una caja abierta para cerrar.')
 
@@ -69,7 +69,7 @@ export const useCajaStore = defineStore('caja', () => {
   }
 
   /* ─── Agregar movimiento ─── */
-  function agregarMovimiento(data) {
+  async function agregarMovimiento(data) {
     if (!cajaAbierta.value || !cajaActual.value)
       throw new Error('No hay una caja abierta. Abra la caja primero.')
 

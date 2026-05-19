@@ -12,7 +12,7 @@ const routes = [
     path: '/ventas',
     name: 'Ventas',
     component: () => import('@/views/VentasPage.vue'),
-    meta: { title: 'Ventas', icon: 'point_of_sale' }
+    meta: { title: 'Ventas', icon: 'point_of_sale', requiresCaja: true }
   },
   {
     path: '/caja',
@@ -46,13 +46,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/caja' || to.path === '/configuracion') return next()
+  if (!to.meta.requiresCaja) return next()
 
   const cajaStore = useCajaStore()
   if (!cajaStore.cajaAbierta) {
     import('quasar').then(({ Notify }) => {
       Notify.create({
-        message: 'Debes abrir la caja primero',
+        message: 'Debes abrir la caja para registrar ventas',
         color: 'warning',
         icon: 'lock',
         position: 'top',

@@ -155,7 +155,6 @@ import { useConfiguracionStore } from '@/store/configuracionStore'
 import { useCajaStore } from '@/store/cajaStore'
 import { useVentasStore } from '@/store/ventasStore'
 import { usePersistencia } from '@/composables/usePersistencia'
-import { post } from '@/services/api'
 import { APP_NAME, APP_VERSION } from '@/constants'
 
 const $q = useQuasar()
@@ -213,15 +212,10 @@ function confirmarReset() {
     ok: { label: 'Sí, resetear todo', color: 'negative', unelevated: true, icon: 'delete_forever' },
     cancel: { label: 'Cancelar', flat: true, color: 'grey-7' },
     persistent: true,
-  }).onOk(async () => {
-    try {
-      await post('/reset')
-      localStorage.clear()
-      $q.notify({ type: 'positive', message: 'Sistema reiniciado. Recargando...', position: 'top', timeout: 1500 })
-      setTimeout(() => window.location.reload(), 1600)
-    } catch {
-      $q.notify({ type: 'negative', message: 'Error al resetear el sistema', position: 'top' })
-    }
+  }).onOk(() => {
+    localStorage.clear()
+    $q.notify({ type: 'positive', message: 'Sistema reiniciado. Recargando...', position: 'top', timeout: 1500 })
+    setTimeout(() => window.location.reload(), 1600)
   })
 }
 </script>

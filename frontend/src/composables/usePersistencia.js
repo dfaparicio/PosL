@@ -4,56 +4,34 @@ import { useConfiguracionStore } from '@/store/configuracionStore'
 import { getTodayISO } from '@/common/format'
 
 export function usePersistencia() {
-  function guardarDato(key, value) {
-    try {
-      const data = JSON.stringify(value)
-      localStorage.setItem(`procuentas_${key}`, data)
-      return true
-    } catch {
-      return false
-    }
-  }
-
-  function obtenerDato(key) {
-    try {
-      const data = localStorage.getItem(`procuentas_${key}`)
-      return data ? JSON.parse(data) : null
-    } catch {
-      return null
-    }
-  }
-
-  function eliminarDato(key) {
-    localStorage.removeItem(`procuentas_${key}`)
-  }
-
   function exportarDatos() {
     const ventasStore = useVentasStore()
-    const cajaStore = useCajaStore()
+    const cajaStore   = useCajaStore()
     const configStore = useConfiguracionStore()
 
     const datos = {
-      version: '1.0.0',
-      fechaExportacion: new Date().toISOString(),
-      ventas: ventasStore.ventas,
-      cajaActual: cajaStore.cajaActual,
-      movimientos: cajaStore.movimientos,
-      cajaAbierta: cajaStore.cajaAbierta,
-      fechaApertura: cajaStore.fechaApertura,
+      version:             '1.1.0',
+      fechaExportacion:    new Date().toISOString(),
+      ventas:              ventasStore.ventas,
+      cajaActual:          cajaStore.cajaActual,
+      movimientos:         cajaStore.movimientos,
+      historialMovimientos: cajaStore.historialMovimientos,
+      cajaAbierta:         cajaStore.cajaAbierta,
+      fechaApertura:       cajaStore.fechaApertura,
       configuracion: {
-        negocioNombre: configStore.negocioNombre,
-        moneda: configStore.moneda,
-        alertaStockBajo: configStore.alertaStockBajo,
-        stockBajoLimite: configStore.stockBajoLimite,
+        negocioNombre:          configStore.negocioNombre,
+        moneda:                 configStore.moneda,
+        alertaStockBajo:        configStore.alertaStockBajo,
+        stockBajoLimite:        configStore.stockBajoLimite,
         porcentajeMaxDescuento: configStore.porcentajeMaxDescuento
       }
     }
 
     const json = JSON.stringify(datos, null, 2)
     const blob = new Blob([json], { type: 'application/json' })
-    const url = URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
+    const url  = URL.createObjectURL(blob)
+    const a    = document.createElement('a')
+    a.href     = url
     a.download = `procuentas_backup_${getTodayISO()}.json`
     a.click()
     URL.revokeObjectURL(url)
@@ -70,21 +48,23 @@ export function usePersistencia() {
         ventasStore.ventas = datos.ventas
       }
 
-      if (datos.movimientos || datos.cajaActual) {
+      if (datos.cajaActual !== undefined || datos.movimientos || datos.historialMovimientos) {
         const cajaStore = useCajaStore()
-        if (datos.cajaActual) cajaStore.cajaActual = datos.cajaActual
-        if (datos.movimientos) cajaStore.movimientos = datos.movimientos
-        if (datos.cajaAbierta !== undefined) cajaStore.cajaAbierta = datos.cajaAbierta
-        if (datos.fechaApertura) cajaStore.fechaApertura = datos.fechaApertura
+        if (datos.cajaActual          !== undefined) cajaStore.cajaActual           = datos.cajaActual
+        if (datos.movimientos)                       cajaStore.movimientos           = datos.movimientos
+        if (datos.historialMovimientos)              cajaStore.historialMovimientos  = datos.historialMovimientos
+        if (datos.cajaAbierta         !== undefined) cajaStore.cajaAbierta           = datos.cajaAbierta
+        if (datos.fechaApertura)                     cajaStore.fechaApertura         = datos.fechaApertura
       }
 
       if (datos.configuracion) {
         const configStore = useConfiguracionStore()
-        if (datos.configuracion.negocioNombre) configStore.negocioNombre = datos.configuracion.negocioNombre
-        if (datos.configuracion.moneda) configStore.moneda = datos.configuracion.moneda
-        if (datos.configuracion.alertaStockBajo !== undefined) configStore.alertaStockBajo = datos.configuracion.alertaStockBajo
-        if (datos.configuracion.stockBajoLimite) configStore.stockBajoLimite = datos.configuracion.stockBajoLimite
-        if (datos.configuracion.porcentajeMaxDescuento) configStore.porcentajeMaxDescuento = datos.configuracion.porcentajeMaxDescuento
+        const c = datos.configuracion
+        if (c.negocioNombre)                        configStore.negocioNombre          = c.negocioNombre
+        if (c.moneda)                               configStore.moneda                 = c.moneda
+        if (c.alertaStockBajo         !== undefined) configStore.alertaStockBajo       = c.alertaStockBajo
+        if (c.stockBajoLimite)                      configStore.stockBajoLimite        = c.stockBajoLimite
+        if (c.porcentajeMaxDescuento)               configStore.porcentajeMaxDescuento = c.porcentajeMaxDescuento
       }
 
       return { success: true }
@@ -98,9 +78,6 @@ export function usePersistencia() {
   }
 
   return {
-    guardarDato,
-    obtenerDato,
-    eliminarDato,
     exportarDatos,
     importarDatos,
     hacerBackup

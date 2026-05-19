@@ -1,5 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useConfiguracionStore } from './configuracionStore'
 
 export const useVentasStore = defineStore('ventas', () => {
   const ventas  = ref([])
@@ -58,13 +59,16 @@ export const useVentasStore = defineStore('ventas', () => {
     if (metodoPago === 'efectivo' && !cajaStore.cajaAbierta)
       throw new Error('Debe abrir la caja antes de registrar ventas en efectivo.')
 
+    const configStore = useConfiguracionStore()
+    const maxDescPct  = (configStore.porcentajeMaxDescuento ?? 20) / 100
+
     const processedItems = items.map(item => {
       const precio    = parseFloat(item.precio)    || 0
       const cantidad  = parseInt(item.cantidad)    || 1
       const descuento = parseFloat(item.descuento) || 0
 
-      if (descuento > precio * cantidad * 0.2)
-        throw new Error(`El descuento en "${item.categoria}" supera el 20% del subtotal.`)
+      if (descuento > precio * cantidad * maxDescPct)
+        throw new Error(`El descuento en "${item.categoria}" supera el ${configStore.porcentajeMaxDescuento ?? 20}% del subtotal.`)
 
       return {
         categoria:   item.categoria,

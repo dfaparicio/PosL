@@ -422,7 +422,7 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive, onMounted, toRef } from 'vue'
+import { ref, computed, reactive, onMounted } from 'vue'
 import MainLayout from '@/layouts/MainLayout.vue'
 import EmptyState from '@/components/Shared/EmptyState.vue'
 import { useVentasStore } from '@/store/ventasStore'
